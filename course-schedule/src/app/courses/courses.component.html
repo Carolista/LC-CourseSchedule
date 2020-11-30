@@ -1,24 +1,24 @@
 <div class="container">
-    <h2 class="text-primary">My Courses</h2>
+    <h3 class="text-primary">My Courses</h3>
     <h4 class="text-uppercase">Total Credits: {{sumCredits()}}</h4>
-    <div *ngIf="fullCourseLoad">
-        <h5 class="text-danger">Your course load is full.</h5>
-    </div>
     <div *ngIf="noCourses">
         <p class="text-muted">Select courses from the list below.</p>
     </div>
+    <div *ngIf="fullCourseLoad">
+        <h5 class="text-danger">Your course load is full.</h5>
+    </div>
     <div class="col-12 vspace" *ngFor="let course of myCourses; let i = index">
-        <h4 class="clickable" (click)="removeCourse(i)">{{course.code}} {{course.title}} <span class="text-danger glyphicon glyphicon-circle-arrow-down"></span></h4>
-        <p>{{course.getDays()}} {{course.startTime}} to {{course.endTime}} - {{course.credits}} credits</p>
+        <h5 class="clickable" (click)="removeCourse(i)">{{course.code}} {{course.title}} <span class="text-danger glyphicon glyphicon-circle-arrow-down"></span></h5>
+        <p class="small">{{course.getDays()}} {{course.startTime}} to {{course.endTime}} - {{course.credits}} credits</p>
     </div>
     
 </div>
 <hr>
 <div class="container">
-    <h2 class="text-primary">Available Courses</h2>
-    <div class="col-12 vspace" *ngFor="let course of availableCourses; let j = index">
-        <h4 [class.clickable]="!fullCourseLoad" (click)="addCourse(j)">{{course.code}} {{course.title}} <span class="text-success glyphicon glyphicon-circle-arrow-up"></span></h4>
-        <p>{{course.getDays()}} {{course.startTime}} to {{course.endTime}} - {{course.credits}} credits</p>
+    <h3 class="text-primary">Available Courses</h3>
+    <div class="col-12 vspace" *ngFor="let course of availableCourses; let i = index">
+        <h5 [class.text-muted]="fullCourseLoad" [class.clickable]="!fullCourseLoad" (click)="addCourse(i)">{{course.code}} {{course.title}} <span *ngIf="!fullCourseLoad" class="text-success glyphicon glyphicon-circle-arrow-up"></span></h5>
+        <p class="small" [class.text-muted]="fullCourseLoad">{{course.getDays()}} {{course.startTime}} to {{course.endTime}} - {{course.credits}} credits</p>
     </div>
 </div>
 

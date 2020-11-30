@@ -4,10 +4,6 @@
     padding-top: 1px;
 }
 
-.clickable {
-    opacity: 1;
-}
-
 .clickable:hover {
     cursor: pointer;
     opacity: 0.8;
