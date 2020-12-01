@@ -8,10 +8,12 @@ import { Course } from '../course.model';
 })
 export class CoursesComponent implements OnInit {
 
-    allCourses: Course[];
-    availableCourses: Course[];
+    // Declare and initialize arrays for lists
+    allCourses: Course[] = [];
+    availableCourses: Course[] = [];
     myCourses: Course[] = [];
 
+    // Track courses and credits
     noCourses: boolean = true;
     fullCourseLoad: boolean = false;
 
@@ -19,6 +21,7 @@ export class CoursesComponent implements OnInit {
 
     ngOnInit(): void {
 
+        // Create some new courses
         this.allCourses = [
             new Course("Intro to Underwater Coding", "LC105", ["Mon", "Wed"], "2:00 PM", "3:30 PM", 3),
             new Course("Intermediate Underwater Coding", "LC205", ["Mon", "Wed"], "1:00 PM", "2:30 PM", 3),
@@ -32,10 +35,15 @@ export class CoursesComponent implements OnInit {
             new Course("Demystifying Asynchronicity", "LC230", ["Wed", "Fri"], "2:00 PM", "3:00 PM", 2),
         ];
         
+        // Sort allCourses by course code
         this.sort(this.allCourses);
+
+        // Make copy of allCourses for initial display of availableCourses
         this.availableCourses = this.allCourses.slice(0);
+
     }
     
+    // When user clicks on course in Available Courses section
     addCourse(index: number): void {
         if (!this.fullCourseLoad) {
             this.noCourses = false;
@@ -46,6 +54,7 @@ export class CoursesComponent implements OnInit {
         }
     }
 
+    // When user clicks on course in My Courses section
     removeCourse(index: number): void {
         this.availableCourses.push(this.myCourses[index]);
         this.sort(this.availableCourses);
@@ -56,6 +65,7 @@ export class CoursesComponent implements OnInit {
         }
     }
 
+    // Check to see if course load is full 
     checkLoad(): void {
         if (this.sumCredits() >= 15 || this.myCourses.length >= 6) {
             this.fullCourseLoad = true;
@@ -64,6 +74,7 @@ export class CoursesComponent implements OnInit {
         }
     }
 
+    // Add credits of currently selected courses to display on page
     sumCredits(): number {
         let sum = 0; 
         for (let i=0; i < this.myCourses.length; i++) {
@@ -72,6 +83,7 @@ export class CoursesComponent implements OnInit {
         return sum;
     }
 
+    // Sort any one of the lists by course code
     sort(array: Course[]): void {
         let key = "code";
         array.sort(function(a: Course, b: Course): number {

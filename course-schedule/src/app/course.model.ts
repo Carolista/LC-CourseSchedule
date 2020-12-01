@@ -18,13 +18,9 @@ export class Course {
         this.credits = credits;
     }
 
+    // Format days for display in lists
     getDays() {
         return this.days.join("/");
-    }
-
-    // Calculate block of time based on credits and number of days per week
-    getHours() {
-        return this.credits / this.days.length;
     }
 
 }

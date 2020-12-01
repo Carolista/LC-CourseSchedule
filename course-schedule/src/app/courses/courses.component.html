@@ -1,25 +1,36 @@
+<!-- My Courses -->
 <div class="container">
+
     <h3 class="text-primary">My Courses</h3>
     <h4 class="text-uppercase">Total Credits: {{sumCredits()}}</h4>
+
     <div *ngIf="noCourses">
         <p class="text-muted">Select courses from the list below.</p>
     </div>
+    
     <div *ngIf="fullCourseLoad">
         <h5 class="text-danger">Your course load is full.</h5>
     </div>
+
     <div class="col-12 vspace" *ngFor="let course of myCourses; let i = index">
         <h5 class="clickable" (click)="removeCourse(i)">{{course.code}} {{course.title}} <span class="text-danger glyphicon glyphicon-circle-arrow-down"></span></h5>
         <p class="small">{{course.getDays()}} {{course.startTime}} to {{course.endTime}} - {{course.credits}} credits</p>
-    </div>
-    
+    </div>    
+
 </div>
+
 <hr>
+
+<!-- Available Courses -->
 <div class="container">
+
     <h3 class="text-primary">Available Courses</h3>
+
     <div class="col-12 vspace" *ngFor="let course of availableCourses; let i = index">
         <h5 [class.text-muted]="fullCourseLoad" [class.clickable]="!fullCourseLoad" (click)="addCourse(i)">{{course.code}} {{course.title}} <span *ngIf="!fullCourseLoad" class="text-success glyphicon glyphicon-circle-arrow-up"></span></h5>
         <p class="small" [class.text-muted]="fullCourseLoad">{{course.getDays()}} {{course.startTime}} to {{course.endTime}} - {{course.credits}} credits</p>
     </div>
+
 </div>
 
 <!-- https://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp -->

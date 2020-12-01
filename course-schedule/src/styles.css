@@ -1,9 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
 
+/* Adds a little extra space between courses in lists */
 .vspace {
     padding-top: 1px;
 }
 
+/* Makes courses and glyphicons appear as links when hovered over */
 .clickable:hover {
     cursor: pointer;
     opacity: 0.8;
